@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ActivityMainBinding activityMainBinding;
+    private MainActivityClickHandler clickHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activityMainBinding.setPerson(person1);
 
-
-
+        // Binding the Handler
+        clickHandler = new MainActivityClickHandler(this);
+        activityMainBinding.setClickHandler(clickHandler);
 
 
     }
 
-    public class MainActivityClickHandler{
+    public class MainActivityClickHandler {
         Context context;
 
         public MainActivityClickHandler(Context context) {
@@ -52,15 +54,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // First Button Click Handling
-        public void onBtnHello(View view){
+        public void onBtnHello(View view) {
             Toast.makeText(context, "Hello My Friends", Toast.LENGTH_SHORT).show();
 
         }
 
         // Second Button Click Handling
-        public void onBtnBye(View view){
+        public void onBtnBye(View view) {
             Toast.makeText(context, "Bye Bye My Friends", Toast.LENGTH_SHORT).show();
+
 
         }
 
     }
+}
